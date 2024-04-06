@@ -6,7 +6,7 @@ root_path = str(pathlib.Path(__file__).parent)
 
 load_dotenv(dotenv_path=os.path.join(root_path, '.env'))
 
-def recordStream(meta: dict):
+def recordStream(meta: dict) -> None:
     
     file_id = utils_local.getFileID(meta["createdAt"], True)
 

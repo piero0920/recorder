@@ -2,6 +2,7 @@ import requests, pathlib, os
 from twitchAPI.twitch import Twitch
 from twitchAPI.helper import first, limit
 from dotenv import load_dotenv
+from typing import Union
 
 root_path = str(pathlib.Path(__file__).parent)
 
@@ -9,7 +10,7 @@ load_dotenv(dotenv_path=os.path.join(root_path, '.env'))
 
 gql_url = "https://gql.twitch.tv/gql"
 
-def GQL_Request(query: str, variables: dict) -> dict | None: 
+def GQL_Request(query: str, variables: dict) -> Union[dict | None]: 
     gql_query = {
         "query": query,
         "variables": variables
@@ -28,7 +29,7 @@ def GQL_Request(query: str, variables: dict) -> dict | None:
     else:
         return None
 
-def getStream(streamer: str) -> dict | None:
+def getStream(streamer: str) -> Union[dict | None]:
 
     query = """
         query getStream($user: String){
@@ -59,7 +60,7 @@ def getStream(streamer: str) -> dict | None:
         return None
 
 
-async def getIDs(meta: dict) -> list | None:
+async def getIDs(meta: dict) -> Union[list | None]:
     
     twitch = await Twitch(os.getenv("APP_ID"), os.getenv("APP_SECRET"))
 
@@ -88,7 +89,7 @@ async def getIDs(meta: dict) -> list | None:
     return None
 
 
-async def getVOD(meta: dict) -> list | None:
+async def getVOD(meta: dict) -> Union[list | None]:
     
     twitch = await Twitch(os.getenv("APP_ID"), os.getenv("APP_SECRET"))
 
