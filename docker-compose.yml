@@ -1,0 +1,13 @@
+version: '3'
+services:
+  python:
+    container_name: vod_recoder
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    volumes:
+      -/media/piero/ARCHIVE1/drive/archive/recent/vod:/app/data/VOD
+      -/media/piero/ARCHIVE1/drive/archive/VODS:/videos
+      -./data:/app/data
