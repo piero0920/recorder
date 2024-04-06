@@ -92,6 +92,9 @@ async def getIDs(meta: dict) -> Union[list | None]:
 
 async def getVOD(meta: dict) -> Union[list | None]:
     
+    if meta is None: 
+        return None
+    
     twitch = await Twitch(os.getenv("APP_ID"), os.getenv("APP_SECRET"))
 
     video = await first(twitch.get_videos(ids=[meta["id"]]))

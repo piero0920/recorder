@@ -4,3 +4,4 @@ Requests==2.31.0
 schedule==1.2.1
 twitchAPI==4.2.0
 twitchAPI==4.2.0
+ffpb==0.4.1
