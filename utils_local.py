@@ -1,5 +1,5 @@
 import os, pathlib, json, re, calendar, shutil
-from datetime import datetime, timedelta, _Date
+from datetime import datetime, timedelta
 from pytz import timezone
 from dotenv import load_dotenv
 
@@ -44,7 +44,7 @@ def deleteTS(metadata: dict) -> None:
     
         os.remove(file_path)
 
-def formatFilename(file_date: _Date) -> dict:
+def formatFilename(file_date: datetime) -> dict:
     
     month_last = calendar.monthrange(file_date.year, file_date.month)[1]
     month_first = set(calendar.monthcalendar(file_date.year, file_date.month)[0])

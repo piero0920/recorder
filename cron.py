@@ -9,7 +9,7 @@ def run_cronjob(days_ago: int) -> None:
 
     file_id = datetime.datetime.strftime(datetime.datetime.now() - datetime.timedelta(days=days_ago), '%Y%m%d')
 
-    files = os.listdir('./data/METADATA')
+    files = os.listdir(os.path.join(root_path, "data", "METADATA"))
 
     unique_files = []
 

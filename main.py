@@ -1,11 +1,14 @@
-import time
+import time, asyncio
 from twitch_api import getStream, getIDs, getVOD
 from logger import logStream, setLiveBoolean, saveMetadata
 from runner import recordStream
 from utils_local import deleteTS
+from dirs import CreateFolders
 #from threading import Thread
 
 print('Process started')
+
+CreateFolders()
 
 while True:
     is_live = getStream()
@@ -16,8 +19,8 @@ while True:
         setLiveBoolean(True)
         recordStream(is_live)
         setLiveBoolean(False)
-        ids = getIDs(is_live)
-        vod_metadata = getVOD(ids)
+        ids = asyncio.run(getIDs(is_live))
+        vod_metadata = asyncio.run(getVOD(ids))
         deleteTS(is_live)
         saveMetadata(is_live, vod_metadata)
 

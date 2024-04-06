@@ -1,3 +1,4 @@
+from __future__ import annotations
 import requests, pathlib, os
 from twitchAPI.twitch import Twitch
 from twitchAPI.helper import first, limit
@@ -29,7 +30,7 @@ def GQL_Request(query: str, variables: dict) -> Union[dict | None]:
     else:
         return None
 
-def getStream(streamer: str) -> Union[dict | None]:
+def getStream() -> Union[dict | None]:
 
     query = """
         query getStream($user: String){
@@ -44,7 +45,7 @@ def getStream(streamer: str) -> Union[dict | None]:
     """
 
     variables = {
-        "user": streamer
+        "user": os.getenv("STREAMER")
     }
 
     response = GQL_Request(query, variables)
