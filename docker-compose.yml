@@ -8,6 +8,6 @@ services:
     env_file:
       - .env
     volumes:
-      -/media/piero/ARCHIVE1/drive/archive/recent/vod:/app/data/VOD
-      -/media/piero/ARCHIVE1/drive/archive/VODS:/videos
-      -./data:/app/data
+      - /media/piero/ARCHIVE1/drive/archive/recent/vod:/app/data/VOD
+      - /media/piero/ARCHIVE1/drive/archive/VODS:/videos
+      - ./data:/app/data
