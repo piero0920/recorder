@@ -99,7 +99,13 @@ def moveVOD(file_id: str, total: int) -> None:
     else:
         week_path = f'{week["week_first"]}-{week["week_last"]}'
 
-    current_path = f'{root_path}/data/VOD/{file_id}.mp4'
-    next_path = f'/videos/VOD - {file_date.year}/{file_date.month:02d} - {file_date.strftime("%B").upper()}/{file_date.strftime("%B").capitalize()} {week_path}/{filename}'
+    current_file = f'{root_path}/data/VOD/{file_id}.mp4'
+    
+    next_folder = f'/videos/VOD - {file_date.year}/{file_date.month:02d} - {file_date.strftime("%B").upper()}/{file_date.strftime("%B").capitalize()} {week_path}'
+    next_file = os.path.join(next_folder, filename)
+    
+    if not os.path.exists(next_folder):
+        os.makedirs(next_folder)
+
     print('Moving vod files to Drive')
-    shutil.move(current_path, next_path)
+    shutil.move(current_file, next_file)
