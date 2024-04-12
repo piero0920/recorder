@@ -18,7 +18,7 @@ def run_cronjob(days_ago: int) -> None:
             unique_files.append(file)
     
     if unique_files != []:
-        print('Starting cron process')
+        print('Starting cron process for', file_id)
         
 
         for unique in unique_files:
@@ -33,15 +33,13 @@ def run_cronjob(days_ago: int) -> None:
 
                 moveVOD(unique_file_id, len(unique_files))
 
-            print('process done!')
+        print('process done!')
 
     else:
-        print('theres not files for cron job')
-
+        print('theres not files for cron job for', file_id)
 
 schedule.every().day.at("08:00").do(lambda: run_cronjob(1))
 
 while True:
     schedule.run_pending()
     time.sleep(1)
-
