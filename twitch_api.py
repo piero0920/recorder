@@ -84,7 +84,7 @@ async def getIDs(meta: dict) -> Union[list | None]:
         if ids != []: 
             
             await twitch.close()
-            return ids
+            return ids[0]
     
     await twitch.close()    
     return None
@@ -97,7 +97,7 @@ async def getVOD(meta: dict) -> Union[list | None]:
     
     twitch = await Twitch(os.getenv("APP_ID"), os.getenv("APP_SECRET"))
 
-    video = await first(twitch.get_videos(ids=[meta["id"]]))
+    video = await first(twitch.get_videos(ids=[meta["vod_id"]]))
 
     if video is not None:
         await twitch.close()  
